@@ -1,0 +1,1 @@
+import './Garage.scss';
