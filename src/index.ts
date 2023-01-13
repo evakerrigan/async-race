@@ -2,19 +2,8 @@ import './assets/styles/normalize.scss';
 import './assets/styles/reset.scss';
 import './assets/styles/global.scss';
 
-import Header from './components/Header/Header';
-import Navigation from './components/Navigation/Navigation';
+import App from './core/App';
 
-const app: HTMLBodyElement | null = document.querySelector('.app');
+const app = new App();
 
-function render() {
-  if (app !== null) {
-    app.appendChild(Header());
-    app.appendChild(Navigation());
-  }
-
-  // Header.render();
-  // Navigation.render();
-}
-
-render();
+app.render();

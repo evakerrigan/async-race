@@ -1,0 +1,47 @@
+.page {
+  display: flex;
+  padding: 20px 0px;
+}
+.page-pagination {
+  font-size: 21px;
+}
+.auto-item {
+  border-bottom: 5px solid grey;
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-size: 25px;
+}
+.auto-wrapper {
+  display: flex;
+}
+.auto-title {
+  font-size: 20px;
+  padding: 0 20px;
+}
+.auto-control {
+  display: flex;
+}
+.auto {
+  width: 90px;
+  height: 90px;
+  // background-image: url('../images/auto.svg');
+  mask-image: url('../../assets/images/auto.svg');
+  -webkit-mask-image: url('../../assets/images/auto.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: pink;
+  transform: scale(-1, 1)
+}
+.auto-img {
+  mask-image: url('../../assets/images/auto.svg');
+  fill: #ffb600;
+  color: pink;
+  background-color: blue;
+}
+
+.pagination-wrapper {
+  display: flex;
+}

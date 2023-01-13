@@ -1,22 +1,21 @@
 import './Navigation.scss';
+import Foundation from '../../core/Foundation';
+import { TypeHTMLElement } from '../../types/types';
 
-class NavigationComponent {
-  render() {
-    const body: HTMLBodyElement | null = document.querySelector('body');
-    const html = `
-    <div class="navigation">
-        ----------------------- this navigation
-      <div class="page">
-        <button class="button">TO GARAGE</button>
-        <button class="button">TO WINNERS</button>
-      </div>
-    </div>
-    `;
-    if (body !== null) {
-      body.innerHTML = html;
-    }
-  }
-}
-const Navigation = new NavigationComponent();
+const Navigation = (): TypeHTMLElement => {
+  const container = Foundation.createElement(
+    'div',
+    { className: 'navigation' },
+    `<div class="page">
+      <button class="button">TO GARAGE</button>
+      <button class="button">TO WINNERS</button>
+    </div>`
+  );
+
+  const render = () => {
+    return container;
+  };
+  return render();
+};
 
 export default Navigation;
