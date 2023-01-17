@@ -9,3 +9,18 @@ export type TypeCar = {
   name: string;
   color: string;
 };
+
+export type TypeGarageState = {
+  page?: number;
+  limit?: number;
+  count?: number;
+  cars?: TypeCar[];
+};
+
+export type TypeStore<TState> = {
+  state: TState;
+  subscribers: Map<string, () => void>;
+  setState: (props: TState) => void;
+  getState: () => TState;
+  subscribe: (key: string, render: () => void) => void;
+};

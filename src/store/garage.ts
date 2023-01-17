@@ -1,22 +1,7 @@
-import { TypeCar } from '../types/types';
+import { TypeGarageState, TypeStore } from '../types/types';
 
 const GARAGE_INITIAL_PAGE_NUMBER = 1;
 const GARAGE_LIMIT = 7;
-
-type TypeGarageState = {
-  page?: number;
-  limit?: number;
-  count?: number;
-  cars?: TypeCar[];
-};
-
-type TypeStore<TState> = {
-  state: TState;
-  subscribers: Map<string, () => void>;
-  setState: (props: TState) => void;
-  getState: () => TState;
-  subscribe: (key: string, render: () => void) => void;
-};
 
 const garageStore: TypeStore<TypeGarageState> = {
   state: {
