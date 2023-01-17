@@ -1,4 +1,4 @@
-import garageStore from '../../store/garage';
+import garageStore from '../../store/garageStore';
 import { getCars } from '../api/apiGarage';
 
 const garageService = {

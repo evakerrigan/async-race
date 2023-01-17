@@ -1,7 +1,7 @@
 import './Garage.scss';
 import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
-import garageStore from '../../store/garage';
+import garageStore from '../../store/garageStore';
 import Car from './Car/Car';
 
 const Garage = (): TypeHTMLElement => {
