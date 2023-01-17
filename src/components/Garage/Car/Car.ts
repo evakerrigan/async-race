@@ -1,4 +1,4 @@
-import Foundation from '../../../shared/libs/Foundation';
+import Foundation from '../../../core/libs/Foundation';
 import { TypeCar } from '../../../types/types';
 import './Car.scss';
 

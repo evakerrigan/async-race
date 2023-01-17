@@ -1,5 +1,5 @@
 import './Footer.scss';
-import Foundation from '../../shared/libs/Foundation';
+import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
 
 const Footer = (): TypeHTMLElement => {

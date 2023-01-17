@@ -1,5 +1,5 @@
 import './Garage.scss';
-import Foundation from '../../shared/libs/Foundation';
+import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
 import garage from '../../store/garage';
 import Car from './Car/Car';

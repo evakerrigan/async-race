@@ -2,8 +2,8 @@ import './assets/styles/normalize.scss';
 import './assets/styles/reset.scss';
 import './assets/styles/global.scss';
 
-import App from './shared/libs/App';
-import garageService from './shared/services/garageService';
+import App from './core/libs/App';
+import garageService from './core/services/garageService';
 
 garageService.setCars(1);
 
