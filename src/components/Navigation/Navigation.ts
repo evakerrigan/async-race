@@ -1,5 +1,5 @@
 import './Navigation.scss';
-import Foundation from '../../core/Foundation';
+import Foundation from '../../shared/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
 
 const Navigation = (): TypeHTMLElement => {

@@ -1,54 +1,38 @@
 import './Garage.scss';
-import Foundation from '../../core/Foundation';
+import Foundation from '../../shared/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
+import garage from '../../store/garage';
+import Car from './Car/Car';
 
 const Garage = (): TypeHTMLElement => {
-  const container = Foundation.createElement(
-    'div',
-    { className: 'garage' },
-    `<h2 class="page-title">Garage</h2>
-
-      <div class="page-pagination">Page #1</div>
-
-      <ul class="auto-list">
-        <li class="auto-item">
-          <div class="auto-wrapper">
-            <button class="button">SELECT</button>
-            <button class="button">REMOVE</button>
-            <div class="auto-title">Tesla</div>
-          </div>
-          <div class="auto-sprint">
-            <div class="auto-control">
-              <button class="button start">A</button>
-              <button class="button stop">B</button>
-            </div>
-            <div class="auto" style="background-color: pink;"></div>
-          </div>
-        </li>
-        <li class="auto-item">
-          <div class="auto-wrapper">
-            <button class="button">SELECT</button>
-            <button class="button">REMOVE</button>
-            <div class="auto-title">Audi</div>
-          </div>
-          <div class="auto-sprint">
-            <div class="auto-control">
-              <button class="button start">A</button>
-              <button class="button stop">B</button>
-            </div>
-            <div class="auto" style="background-color: green;"></div>
-          </div>
-        </li>
-      </ul>
-      <div class="pagination-wrapper">
-        <button class="button">PREV</button>
-        <button class="button">NEXT</button>
-      </div>`
-  );
+  const container = Foundation.createElement('div', { className: 'garage' });
 
   const render = () => {
+    const { cars, page } = garage.getState();
+
+    const carsContainer = Foundation.createElement('ul', { className: 'auto-list' });
+
+    cars?.forEach((car) => {
+      carsContainer.appendChild(Car(car));
+    });
+
+    container.innerHTML = `<h2 class="page-title">Garage</h2>
+    <div class="page-pagination">Page ${page}</div>`;
+
+    container.appendChild(carsContainer);
+
+    // ,
+    // `
+    //   <!--<div class="pagination-wrapper">
+    //     <button data-car-id=${id} class="button">PREV</button>
+    //     <button class="button">NEXT</button>
+    //   </div>-->
+    //   `
+
     return container;
   };
+
+  garage.subscribe('component:Garage', render);
 
   return render();
 };

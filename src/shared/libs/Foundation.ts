@@ -1,4 +1,4 @@
-import { TypeHTMLElement, TypeObjectClass } from '../types/types';
+import { TypeHTMLElement, TypeObjectClass } from '../../types/types';
 
 export default class Foundation {
   // readonly element: HTMLElement;
@@ -16,14 +16,13 @@ export default class Foundation {
     const element = document.createElement(tagName);
 
     // Set attributes
-    //TODO: eslint-disable-next-line no-restricted-syntax
-    for (const key in attributes) {
+    Object.keys(attributes).forEach((key) => {
       if (key === 'className') {
-        element.className = attributes[key].toString();
+        element.className = attributes[key].toString(); // 'ggg ggg ggg'
       } else {
         element.setAttribute(key, attributes[key].toString());
       }
-    }
+    });
 
     // Add children
     if (typeof children === 'string' && children) {
