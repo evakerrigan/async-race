@@ -1,14 +1,14 @@
 import './Garage.scss';
 import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
-import garage from '../../store/garage';
+import garageStore from '../../store/garage';
 import Car from './Car/Car';
 
 const Garage = (): TypeHTMLElement => {
   const container = Foundation.createElement('div', { className: 'garage' });
 
   const render = () => {
-    const { cars, page } = garage.getState();
+    const { cars, page } = garageStore.getState();
 
     const carsContainer = Foundation.createElement('ul', { className: 'auto-list' });
 
@@ -32,7 +32,7 @@ const Garage = (): TypeHTMLElement => {
     return container;
   };
 
-  garage.subscribe('component:Garage', render);
+  garageStore.subscribe('component:Garage', render);
 
   return render();
 };

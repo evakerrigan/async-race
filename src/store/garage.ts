@@ -18,7 +18,7 @@ type TypeStore<TState> = {
   subscribe: (key: string, render: () => void) => void;
 };
 
-const garage: TypeStore<TypeGarageState> = {
+const garageStore: TypeStore<TypeGarageState> = {
   state: {
     page: GARAGE_INITIAL_PAGE_NUMBER,
     limit: GARAGE_LIMIT,
@@ -56,6 +56,6 @@ declare global {
   }
 }
 
-window.store = garage;
+window.store = garageStore;
 
-export default garage;
+export default garageStore;
