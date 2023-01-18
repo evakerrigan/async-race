@@ -10,14 +10,14 @@ const Car = (car: TypeCar): HTMLElement => {
     { className: 'auto-item' },
     `
       <div class="auto-wrapper">
-        <button data-car-id=${id} class="button">SELECT</button>
-        <button data-car-id=${id} class="button">REMOVE</button>
+        <button type="button" data-car-id=${id} class="button">SELECT</button>
+        <button type="button" data-car-id=${id} class="button">REMOVE</button>
         <div class="auto-title">${name}</div>
       </div>
       <div class="auto-sprint">
         <div class="auto-control">
-          <button data-car-id=${id} class="button start">A</button>
-          <button data-car-id=${id} class="button stop">B</button>
+          <button type="button" data-car-id=${id} class="button start">A</button>
+          <button type="button" data-car-id=${id} class="button stop">B</button>
         </div>
         <div class="auto" style="background-color: ${color};"></div>
       </div>
