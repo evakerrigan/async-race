@@ -32,7 +32,7 @@ const Garage = (): TypeHTMLElement => {
     return container;
   };
 
-  garageStore.subscribe('component:Garage', render);
+  garageStore.subscribe('component: Garage', render);
 
   return render();
 };

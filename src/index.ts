@@ -5,7 +5,7 @@ import './assets/styles/global.scss';
 import App from './core/libs/App';
 import garageService from './core/services/garageService';
 
-garageService.setCars(1);
+garageService.viewCars(1);
 
 const app = new App();
 

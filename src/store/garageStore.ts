@@ -32,6 +32,7 @@ const garageStore: TypeStore<TypeGarageState> = {
 
   subscribe(key, render) {
     this.subscribers.set(key, render);
+    console.log('subscribe-key = ', key);
   },
 };
 
