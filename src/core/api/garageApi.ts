@@ -29,6 +29,7 @@ export const setCar = async (name: string, color: string): Promise<TypeCar | nul
 
 export const getCars = async (page: number, limit: number): Promise<{ cars: TypeCar[]; count: number } | null> => {
   try {
+    console.log('ЗАШЛИ В getCars');
     const res = await fetch(`${BASE_URL}/${GARAGE_ENDPOINT}?_page=${page}&_limit=${limit}`);
 
     if (res.status === 200) {
@@ -40,6 +41,26 @@ export const getCars = async (page: number, limit: number): Promise<{ cars: Type
         cars,
         count: parseInt(res.headers.get('X-Total-Count') || '0', 10),
       };
+    }
+
+    return null;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const removeCarServer = async (id: number): Promise<TypeCar | null> => {
+  console.log(id);
+  try {
+    const res = await fetch(`${BASE_URL}/${GARAGE_ENDPOINT}/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (res.status === 200) {
+      return null;
+    }
+    if (res.status === 404) {
+      return null;
     }
 
     return null;

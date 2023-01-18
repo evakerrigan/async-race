@@ -1,4 +1,5 @@
 import Foundation from '../../../core/libs/Foundation';
+import garageService from '../../../core/services/garageService';
 import { TypeCar } from '../../../types/types';
 import './Car.scss';
 
@@ -10,8 +11,8 @@ const Car = (car: TypeCar): HTMLElement => {
     { className: 'auto-item' },
     `
       <div class="auto-wrapper">
-        <button type="button" data-car-id=${id} class="button">SELECT</button>
-        <button type="button" data-car-id=${id} class="button">REMOVE</button>
+        <button type="button" data-car-id=${id} class="button select">SELECT</button>
+        <button type="button" data-car-id=${id} class="button remove">REMOVE</button>
         <div class="auto-title">${name}</div>
       </div>
       <div class="auto-sprint">
@@ -23,6 +24,17 @@ const Car = (car: TypeCar): HTMLElement => {
       </div>
         `
   );
+
+  let removeId: number;
+  container.addEventListener('click', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLButtonElement && target.classList.contains('remove')) {
+      e.preventDefault();
+      removeId = Number(target.getAttribute('data-car-id'));
+      console.log('removeId = ', removeId);
+      garageService.removeCar(removeId);
+    }
+  });
 
   const render = () => {
     return container;
