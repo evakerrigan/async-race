@@ -35,11 +35,12 @@ export const getCars = async (page: number, limit: number): Promise<{ cars: Type
     if (res.status === 200) {
       const cars: TypeCar[] = await res.json();
 
-      console.log('count = ', parseInt(res.headers.get('X-Total-Count') || '0', 10));
+      const count: number = parseInt(res.headers.get('X-Total-Count') || '0', 10);
+      console.log('count = ', count);
 
       return {
         cars,
-        count: parseInt(res.headers.get('X-Total-Count') || '0', 10),
+        count,
       };
     }
 

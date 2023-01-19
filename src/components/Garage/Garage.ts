@@ -16,7 +16,7 @@ const Garage = (): TypeHTMLElement => {
       carsContainer.appendChild(Car(car));
     });
 
-    container.innerHTML = `<h2 class="page-title">Garage</h2>
+    container.innerHTML = `<h2 class="page-title">Garage ${'-число-'}</h2>
     <div class="page-pagination">Page ${page}</div>`;
 
     container.appendChild(carsContainer);

@@ -1,5 +1,5 @@
 import garageStore from '../../store/garageStore';
-import { TypeCar } from '../../types/types';
+// import { TypeCar } from '../../types/types';
 import { getCars, removeCarServer, setCar } from '../api/garageApi';
 
 const garageService = {

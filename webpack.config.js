@@ -14,7 +14,7 @@ const config = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: true,
-        publicPath: '/',
+        // publicPath: '/',
         assetModuleFilename: 'assets/images/[name][ext]'
     },
     devServer: {
