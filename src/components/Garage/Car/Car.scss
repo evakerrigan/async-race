@@ -12,6 +12,11 @@
   animation-fill-mode: forwards;
 }
 
+.select.active {
+  background-color: blue;
+  color: #fff;
+}
+
 @keyframes toDriveCar {
   from {
     left: 0;

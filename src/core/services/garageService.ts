@@ -19,8 +19,8 @@ const garageService = {
             garageStore.setState(data);
           }
         });
-        console.log('машинка записана на сервер', car);
-        console.log('store cars сейчас машинок в сторе =>', garageStore.getState().cars);
+        // console.log('машинка записана на сервер', car);
+        // console.log('store cars сейчас машинок в сторе =>', garageStore.getState().cars);
         // const cars: TypeCar[] | undefined = garageStore?.getState()?.cars;
         // const newCars = cars ? [...cars, car] : [car];
         // garageStore.setState({ cars: newCars });

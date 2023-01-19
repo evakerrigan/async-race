@@ -20,7 +20,7 @@ const garageStore: TypeStore<TypeGarageState> = {
     };
 
     this.subscribers.forEach((render) => {
-      console.log(render);
+      // console.log(render);
 
       render();
     });

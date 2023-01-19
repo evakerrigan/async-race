@@ -35,6 +35,26 @@ const Car = (car: TypeCar): HTMLElement => {
       garageService.removeCar(removeId);
     }
   });
+  let selectId: number;
+  container.addEventListener('click', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLButtonElement && target.classList.contains('select')) {
+      e.preventDefault();
+      selectId = Number(target.getAttribute('data-car-id'));
+      const selectButton = document.querySelectorAll('.select');
+      console.log('selectId = ', selectId);
+      if (target.classList.contains('active')) {
+        target.classList.remove('active');
+      } else {
+        for (let i = 0; i < selectButton.length; i = +1) {
+          selectButton[i].classList.remove('active');
+        }
+        target.classList.add('active');
+      }
+
+      // target.classList.remove('active');
+    }
+  });
 
   const render = () => {
     return container;
