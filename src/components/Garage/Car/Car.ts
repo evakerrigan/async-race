@@ -46,7 +46,8 @@ const Car = (car: TypeCar): HTMLElement => {
       if (target.classList.contains('active')) {
         target.classList.remove('active');
       } else {
-        for (let i = 0; i < selectButton.length; i = +1) {
+        console.log('selectButton.length = ', selectButton.length);
+        for (let i = 0; i < selectButton.length; i += 1) {
           selectButton[i].classList.remove('active');
         }
         target.classList.add('active');
