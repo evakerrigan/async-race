@@ -24,3 +24,9 @@ export type TypeStore<TState> = {
   getState: () => TState;
   subscribe: (key: string, render: () => void) => void;
 };
+
+export type TypeCarStore<TState> = {
+  state: TState;
+  setState: (props: TState) => void;
+  getState: () => TState;
+};

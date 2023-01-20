@@ -1,5 +1,6 @@
 import Foundation from '../../../core/libs/Foundation';
 import garageService from '../../../core/services/garageService';
+import garageStore from '../../../store/garageStore';
 import { TypeCar } from '../../../types/types';
 import './Car.scss';
 
@@ -45,12 +46,31 @@ const Car = (car: TypeCar): HTMLElement => {
       console.log('selectId = ', selectId);
       if (target.classList.contains('active')) {
         target.classList.remove('active');
+        garageService.resetSelectCar();
+        // TODO:сделать при отмене селекта - удаление имени из апдейта
       } else {
-        console.log('selectButton.length = ', selectButton.length);
         for (let i = 0; i < selectButton.length; i += 1) {
           selectButton[i].classList.remove('active');
         }
         target.classList.add('active');
+
+        if (selectId !== null) {
+          if (garageStore.state.cars !== undefined) {
+            const indexClickCar: number = garageStore.state.cars.findIndex((elem) => elem.id === selectId);
+            console.log('indexClickCar : ', indexClickCar);
+            const nameClickCar = garageStore.state.cars[`${indexClickCar}`].name;
+            console.log('nameClickCar = ', nameClickCar);
+            const colorClickCar = garageStore.state.cars[`${indexClickCar}`].color;
+            console.log('colorClickCar = ', colorClickCar);
+            const inputNameUpdate = document.querySelector('.input-name-update');
+
+            if (inputNameUpdate instanceof HTMLInputElement && inputNameUpdate) {
+              inputNameUpdate.value = nameClickCar;
+            }
+
+            garageService.selectCar(selectId, nameClickCar, colorClickCar);
+          }
+        }
       }
 
       // target.classList.remove('active');

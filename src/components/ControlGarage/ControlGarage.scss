@@ -6,8 +6,17 @@
   padding: 10px 0px;
 }
 .control-color {
-  width: 20px;
-  height: 20px;
-  background-color: #999;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
   margin: 0 10px;
+  border: none;
+  outline: none;
+}
+.control-input {
+  outline: none;
+  padding: 0px 5px 0px 15px;
+  line-height: 0;
+  display: block;
+  border: none;
 }

@@ -1,12 +1,12 @@
 import garageStore from '../../store/garageStore';
+import selectCarStore from '../../store/selectCarStore';
 // import { TypeCar } from '../../types/types';
-import { getCars, removeCarServer, setCar } from '../api/garageApi';
+import { getCars, removeCarServer, setCar, updateCarServer } from '../api/garageApi';
 
 const garageService = {
   async setCars(page: number): Promise<void> {
     getCars(page, 7).then((data) => {
       if (data) {
-        // console.log('state из setCars = ', data);
         garageStore.setState(data);
       }
     });
@@ -16,6 +16,7 @@ const garageService = {
       if (car) {
         getCars(1, 7).then((data) => {
           if (data) {
+            // console.log('data create = ', data);
             garageStore.setState(data);
           }
         });
@@ -28,11 +29,13 @@ const garageService = {
       }
     });
   },
-  async updateCar(page: number): Promise<void> {
-    getCars(page, 7).then((data) => {
-      if (data) {
-        garageStore.setState(data);
-      }
+  async updateCar(id: number, name: string, color: string): Promise<void> {
+    updateCarServer(id, name, color).then(() => {
+      getCars(1, 7).then((data) => {
+        if (data) {
+          garageStore.setState(data);
+        }
+      });
     });
   },
   async raceCar(page: number): Promise<void> {
@@ -64,6 +67,23 @@ const garageService = {
         }
       });
     });
+  },
+  async selectCar(id: number, name: string, color: string): Promise<void> {
+    selectCarStore.setState({ id, name, color });
+  },
+  // async getUpdateSelectCar(): Promise<{ id: number; name: string; color: string }> {
+  //   console.log('selectCarStore.getState() = ', selectCarStore.getState());
+  //   return selectCarStore.getState();
+  // },
+  getUpdateSelectCar() {
+    return selectCarStore.getState();
+  },
+  async getCountCar(): Promise<void> {
+    garageStore.getState();
+    console.log('store cars сейчас машинок в сторе =>', garageStore.getState().count);
+  },
+  resetSelectCar() {
+    return selectCarStore.setState({ id: -1, name: '', color: '' });
   },
 };
 

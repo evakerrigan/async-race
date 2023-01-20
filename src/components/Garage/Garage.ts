@@ -16,7 +16,14 @@ const Garage = (): TypeHTMLElement => {
       carsContainer.appendChild(Car(car));
     });
 
-    container.innerHTML = `<h2 class="page-title">Garage ${'-число-'}</h2>
+    // const garageState: TypeGarageState = garageService.getCountCar();
+    // const countCar: number;
+    // if (garageState !== undefined) {
+    //   countCar = garageState.count;
+    // }
+    // const countCar: number = garageState.count;
+
+    container.innerHTML = `<h2 class="page-title">Garage countCar</h2>
     <div class="page-pagination">Page ${page}</div>`;
 
     container.appendChild(carsContainer);

@@ -10,12 +10,12 @@ const ControlGarage = (): TypeHTMLElement => {
     { className: 'control' },
     `<div class="control-wrapper">
       <input value="" type="text" placeholder="Create name" class="control-input input-name-create" />
-      <div class="control-color"></div>
+      <button type="button" class="button control-color"></button>
       <button type="button" class="button create">CREATE</button>
     </div>
     <div class="control-wrapper">
       <input value="" type="text" placeholder="Update name" class="control-input input-name-update" />
-      <div class="control-color"></div>
+      <button type="button" class="button control-color"></button>
       <button type="button" class="button update">UPDATE</button>
     </div>
     <div class="control-wrapper">
@@ -54,16 +54,42 @@ const ControlGarage = (): TypeHTMLElement => {
       valueColor = '#fff';
       console.log('valueName = ', valueName);
       console.log('valueColor = ', valueColor);
-      garageService.createCar(valueName, valueColor);
+      if (valueName !== undefined) {
+        garageService.createCar(valueName, valueColor);
+        const inputNameCreate = document.querySelector('.input-name-create');
+        if (inputNameCreate instanceof HTMLInputElement && inputNameCreate) {
+          if (inputNameCreate.value !== undefined) {
+            inputNameCreate.value = '';
+          }
+        }
+      }
     }
   });
-
-  container.addEventListener('click', (e: Event): void => {
+  container.addEventListener('click', async (e: Event): Promise<void> => {
     const { target } = e;
     if (target instanceof HTMLButtonElement && target.classList.contains('update')) {
       e.preventDefault();
       console.log('нажали кнопку UPDATE');
-      garageService.updateCar(1);
+
+      const dataSelectCar = garageService.getUpdateSelectCar();
+
+      console.log('dataSelectCar = ', dataSelectCar);
+
+      const inputNameUpdateChange = document.querySelector('.input-name-update');
+
+      if (inputNameUpdateChange instanceof HTMLInputElement && inputNameUpdateChange) {
+        if (inputNameUpdateChange.value !== null) {
+          const newNameCar: string = inputNameUpdateChange.value;
+          if (dataSelectCar.name === newNameCar) {
+            console.log('name не изменено');
+          } else {
+            console.log('dataSelectCar.id = ', dataSelectCar.id);
+            garageService.updateCar(dataSelectCar.id, newNameCar, dataSelectCar.color);
+            inputNameUpdateChange.value = '';
+            garageService.resetSelectCar();
+          }
+        }
+      }
     }
   });
 

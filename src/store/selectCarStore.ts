@@ -1,22 +1,21 @@
-import { TypeCar, TypeStore } from '../types/types';
+import { TypeCar, TypeCarStore } from '../types/types';
 
-const selectCarStore: TypeStore<TypeCar> = {
+const selectCarStore: TypeCarStore<TypeCar> = {
   state: {
     id: 0,
     name: '',
     color: '',
   },
 
-  subscribers: new Map(),
-
   setState(props) {
     this.state = {
       ...props,
     };
-    console.log('selectCarState = ', this.state);
+    // console.log('selectCarState = ', this.state);
   },
 
   getState() {
+    // console.log('return selectCarState = ', { ...this.state });
     return { ...this.state };
   },
 };

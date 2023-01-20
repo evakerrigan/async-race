@@ -69,3 +69,32 @@ export const removeCarServer = async (id: number): Promise<TypeCar | null> => {
     return null;
   }
 };
+export const updateCarServer = async (id: number, name: string, color: string): Promise<TypeCar | null> => {
+  console.log(id);
+  try {
+    const valueNameColor: { name: string; color: string } = { name, color };
+
+    const res = await fetch(`${BASE_URL}/${GARAGE_ENDPOINT}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(valueNameColor),
+    });
+
+    if (res.status === 200) {
+      return {
+        id,
+        name,
+        color,
+      };
+    }
+    if (res.status === 404) {
+      return null;
+    }
+
+    return null;
+  } catch (error) {
+    return null;
+  }
+};
