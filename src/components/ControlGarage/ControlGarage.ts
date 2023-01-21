@@ -3,6 +3,7 @@ import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
 import garageService from '../../core/services/garageService';
 import garageStore from '../../store/garageStore';
+import dataCars from '../../data/dataCars';
 
 const ControlGarage = (): TypeHTMLElement => {
   const container = Foundation.createElement(
@@ -115,8 +116,32 @@ const ControlGarage = (): TypeHTMLElement => {
     const { target } = e;
     if (target instanceof HTMLButtonElement && target.classList.contains('generate')) {
       e.preventDefault();
-      console.log('нажали кнопку update');
-      garageService.generateCar(1);
+      console.log('нажали кнопку GENERATE');
+
+      const { mark, model } = dataCars;
+
+      for (let i = 0; i <= 10; i += 1) {
+        const randomName = `${mark[Math.floor(Math.random() * mark.length)]} ${
+          model[Math.floor(Math.random() * model.length)]
+        }`;
+
+        const randomColor = () => {
+          const min = 0;
+          const max = 255;
+          const random = () => min + Math.floor(Math.random() * (max - min + 1));
+
+          const r = random();
+          const g = random();
+          const b = random();
+
+          const resultColor = `rgb(${r},${g},${b})`;
+
+          return resultColor;
+        };
+        console.log('randomName: ', randomName, 'randomColor: ', randomColor);
+
+        garageService.createCar(randomName, randomColor());
+      }
     }
   });
 
