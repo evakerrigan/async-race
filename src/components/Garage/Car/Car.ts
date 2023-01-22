@@ -18,10 +18,10 @@ const Car = (car: TypeCar): HTMLElement => {
       </div>
       <div class="auto-sprint">
         <div class="auto-control">
-          <button type="button" data-car-id=${id} class="button start">A</button>
-          <button type="button" data-car-id=${id} class="button stop">B</button>
+          <button type="button" data-car-id=${id} class="button start">start</button>
+          <button type="button" data-car-id=${id} class="button stop">stop</button>
         </div>
-        <div class="auto" style="background-color: ${color};"></div>
+        <div class="auto auto-${id}" data-car-id=${id} style="background-color: ${color};"></div>
       </div>
         `
   );
@@ -74,6 +74,18 @@ const Car = (car: TypeCar): HTMLElement => {
       }
 
       // target.classList.remove('active');
+    }
+  });
+
+  let startId: number;
+  container.addEventListener('click', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLButtonElement && target.classList.contains('start')) {
+      e.preventDefault();
+      startId = Number(target.getAttribute('data-car-id'));
+      const status = 'started';
+      console.log('startId = ', startId);
+      garageService.startCar(id, status);
     }
   });
 

@@ -1,0 +1,17 @@
+get http://localhost:8080/
+
+###
+get http://localhost:8080/garage/
+
+###
+get http://localhost:3000/garage/2
+
+###
+get http://localhost:3000/garage?_page=1&_limit=7
+
+###
+patch http://localhost:3000/engine?id=1&status=stopped
+
+
+
+

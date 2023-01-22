@@ -9,6 +9,10 @@ export type TypeCar = {
   name: string;
   color: string;
 };
+export type TypeValueRace = {
+  velocity: number;
+  distance: number;
+};
 
 export type TypeGarageState = {
   page?: number;

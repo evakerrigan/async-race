@@ -5,11 +5,11 @@
 }
 
 .auto {
-  animation-name: toDriveCar;
-  animation-duration: 5s;
+  // animation-name: toDriveCar;
+  // animation-duration: 5s;
   position: absolute;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
+  // animation-timing-function: ease-in;
+  // animation-fill-mode: forwards;
 }
 
 .select.active {
@@ -17,12 +17,12 @@
   color: #fff;
 }
 
-@keyframes toDriveCar {
-  from {
-    left: 0;
-  }
+// @keyframes toDriveCar {
+//   from {
+//     left: 0;
+//   }
 
-  to {
-    left: calc(100% - 90px);
-  }
-}
+//   to {
+//     left: calc(100% - 90px);
+//   }
+// }

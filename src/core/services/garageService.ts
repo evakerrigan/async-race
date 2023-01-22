@@ -1,7 +1,8 @@
 import garageStore from '../../store/garageStore';
 import selectCarStore from '../../store/selectCarStore';
+// import { TypeGarageState } from '../../types/types';
 // import { TypeCar } from '../../types/types';
-import { getCars, removeCarServer, setCar, updateCarServer } from '../api/garageApi';
+import { getCars, patchStartCar, removeCarServer, setCar, updateCarServer } from '../api/garageApi';
 
 const garageService = {
   async setCars(page: number): Promise<void> {
@@ -87,6 +88,30 @@ const garageService = {
   },
   resetSelectCar() {
     return selectCarStore.setState({ id: -1, name: '', color: '' });
+  },
+  async startCar(id: number, status: string): Promise<void> {
+    console.log('стартует машина id = ', id);
+    patchStartCar(id, status).then((data) => {
+      if (data) {
+        console.log('garageService getCars data = ', data);
+
+        const { velocity, distance } = data;
+        // garageStore.setState(data);
+
+        const road = [{ left: '100px' }, { left: `calc(100% - 70px)` }];
+        const time = distance / velocity;
+        const anim = {
+          duration: time,
+        };
+        const autoId = document.querySelector(`.auto-${id}`) as HTMLElement;
+        console.log('autoId.style', autoId.style.left);
+        const animation = autoId.animate(road, anim);
+        animation.play();
+        animation.onfinish = () => {
+          autoId.style.left = `calc(100% - 70px)`;
+        };
+      }
+    });
   },
 };
 
