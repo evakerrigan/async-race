@@ -5,8 +5,11 @@ import { getCars, removeCarServer, setCar, updateCarServer } from '../api/garage
 
 const garageService = {
   async setCars(page: number): Promise<void> {
+    console.log('garageService setCars page = ', page);
     getCars(page, 7).then((data) => {
       if (data) {
+        console.log('garageService getCars page = ', page);
+        console.log('garageService getCars data = ', data);
         garageStore.setState(data);
       }
     });

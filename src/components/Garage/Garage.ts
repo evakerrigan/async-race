@@ -3,14 +3,60 @@ import Foundation from '../../core/libs/Foundation';
 import { TypeHTMLElement } from '../../types/types';
 import garageStore from '../../store/garageStore';
 import Car from './Car/Car';
+import garageService from '../../core/services/garageService';
 
 const Garage = (): TypeHTMLElement => {
   const container = Foundation.createElement('div', { className: 'garage' });
 
+  container.addEventListener('click', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLButtonElement && target.classList.contains('prev')) {
+      e.preventDefault();
+      console.log('нажали кнопку PREV');
+      const currentPage = 2;
+      const prevPage: number = currentPage - 1;
+      if (prevPage === 0) {
+        console.log('страницы 0 не существует');
+      } else if (prevPage > 0) {
+        console.log('prevPage', prevPage);
+        garageService.setCars(prevPage);
+      }
+    }
+  });
+  container.addEventListener('click', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLButtonElement && target.classList.contains('next')) {
+      e.preventDefault();
+      console.log('--------------------------------------------------------------------');
+      console.log('нажали кнопку NEXT');
+      const currentPage = 1;
+      const nextPage: number = currentPage + 1;
+      const maxPage = Math.ceil(11 / 7);
+      if (nextPage <= maxPage) {
+        console.log('страница меньше или равна максимальной, все ок');
+        console.log('nextPage', nextPage);
+        console.log('maxPage', maxPage);
+        garageService.setCars(nextPage);
+      } else {
+        console.log('страница больше максимальной, значит не существует');
+      }
+    }
+  });
+
   const render = () => {
-    const { cars, page } = garageStore.getState();
+    const { cars, page, count } = garageStore.getState();
 
     const carsContainer = Foundation.createElement('ul', { className: 'auto-list' });
+
+    const pagination = Foundation.createElement(
+      'ul',
+      { className: 'auto-list' },
+      `<div class="pagination-wrapper">
+        <button class="button prev">PREV</button>
+        <div class="pagination-number">${page}</div>
+        <button class="button next">NEXT</button>
+      </div>`
+    );
 
     cars?.forEach((car) => {
       carsContainer.appendChild(Car(car));
@@ -23,18 +69,12 @@ const Garage = (): TypeHTMLElement => {
     // }
     // const countCar: number = garageState.count;
 
-    container.innerHTML = `<h2 class="page-title">Garage countCar</h2>
-    <div class="page-pagination">Page ${page}</div>`;
+    container.innerHTML = `<h2 class="page-title">Garage: ${count}</h2>
+    <div class="page-pagination">Page: ${page}</div>`;
 
     container.appendChild(carsContainer);
 
-    // ,
-    // `
-    //   <!--<div class="pagination-wrapper">
-    //     <button data-car-id=${id} class="button">PREV</button>
-    //     <button class="button">NEXT</button>
-    //   </div>-->
-    //   `
+    container.appendChild(pagination);
 
     return container;
   };

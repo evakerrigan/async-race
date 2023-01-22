@@ -138,8 +138,6 @@ const ControlGarage = (): TypeHTMLElement => {
 
           return resultColor;
         };
-        console.log('randomName: ', randomName, 'randomColor: ', randomColor);
-
         garageService.createCar(randomName, randomColor());
       }
     }

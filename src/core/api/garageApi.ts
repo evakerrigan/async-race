@@ -27,7 +27,10 @@ export const setCar = async (name: string, color: string): Promise<TypeCar | nul
   }
 };
 
-export const getCars = async (page: number, limit: number): Promise<{ cars: TypeCar[]; count: number } | null> => {
+export const getCars = async (
+  page: number,
+  limit: number
+): Promise<{ cars: TypeCar[]; count: number; page: number } | null> => {
   try {
     console.log('ЗАШЛИ В getCars');
     const res = await fetch(`${BASE_URL}/${GARAGE_ENDPOINT}?_page=${page}&_limit=${limit}`);
@@ -41,6 +44,7 @@ export const getCars = async (page: number, limit: number): Promise<{ cars: Type
       return {
         cars,
         count,
+        page,
       };
     }
 

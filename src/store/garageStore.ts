@@ -18,7 +18,7 @@ const garageStore: TypeStore<TypeGarageState> = {
       ...this.state,
       ...props,
     };
-    console.log('garageStore = ', this.state);
+    console.log('SET garageStore = ', this.state);
 
     this.subscribers.forEach((render) => {
       // console.log(render);
@@ -28,6 +28,7 @@ const garageStore: TypeStore<TypeGarageState> = {
   },
 
   getState() {
+    console.log('GET garageStore = ', this.state);
     return { ...this.state };
   },
 
