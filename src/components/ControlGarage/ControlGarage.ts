@@ -11,12 +11,12 @@ const ControlGarage = (): TypeHTMLElement => {
     { className: 'control' },
     `<div class="control-wrapper">
       <input value="" type="text" placeholder="Create name" class="control-input input-name-create" />
-      <button type="button" class="button control-color"></button>
+      <input type="color" class="control-color control-color-create" value="#ffc0cb" />
       <button type="button" class="button create">CREATE</button>
     </div>
     <div class="control-wrapper">
       <input value="" type="text" placeholder="Update name" class="control-input input-name-update" />
-      <button type="button" class="button control-color"></button>
+      <input type="color" class="control-color control-color-update" value="#ffc0cb" />
       <button type="button" class="button update">UPDATE</button>
     </div>
     <div class="control-wrapper">
@@ -37,13 +37,22 @@ const ControlGarage = (): TypeHTMLElement => {
     }
   });
 
-  let valueColor: string;
+  let valueColorCreate: string;
   container.addEventListener('input', (e: Event): void => {
     const { target } = e;
-    if (target instanceof HTMLInputElement && target.classList.contains('input-name-update')) {
+    if (target instanceof HTMLInputElement && target.classList.contains('control-color-create')) {
       e.preventDefault();
 
-      valueColor = target.value;
+      valueColorCreate = target.value;
+    }
+  });
+  let valueColorUpdate: string;
+  container.addEventListener('input', (e: Event): void => {
+    const { target } = e;
+    if (target instanceof HTMLInputElement && target.classList.contains('control-color-update')) {
+      e.preventDefault();
+
+      valueColorUpdate = target.value;
     }
   });
 
@@ -52,11 +61,10 @@ const ControlGarage = (): TypeHTMLElement => {
     if (target instanceof HTMLButtonElement && target.classList.contains('create')) {
       e.preventDefault();
       console.log('нажали кнопку CREATE');
-      valueColor = '#fff';
       console.log('valueName = ', valueName);
-      console.log('valueColor = ', valueColor);
+      console.log('valueColorCreate = ', valueColorCreate);
       if (valueName !== undefined) {
-        garageService.createCar(valueName, valueColor);
+        garageService.createCar(valueName, valueColorCreate);
         const inputNameCreate = document.querySelector('.input-name-create');
         if (inputNameCreate instanceof HTMLInputElement && inputNameCreate) {
           if (inputNameCreate.value !== undefined) {
@@ -70,6 +78,7 @@ const ControlGarage = (): TypeHTMLElement => {
     const { target } = e;
     if (target instanceof HTMLButtonElement && target.classList.contains('update')) {
       e.preventDefault();
+      console.log('-----------------------------------------------------');
       console.log('нажали кнопку UPDATE');
 
       const dataSelectCar = garageService.getUpdateSelectCar();
@@ -81,11 +90,12 @@ const ControlGarage = (): TypeHTMLElement => {
       if (inputNameUpdateChange instanceof HTMLInputElement && inputNameUpdateChange) {
         if (inputNameUpdateChange.value !== null) {
           const newNameCar: string = inputNameUpdateChange.value;
-          if (dataSelectCar.name === newNameCar) {
-            console.log('name не изменено');
+          if (dataSelectCar.name === newNameCar && valueColorUpdate === undefined) {
+            console.log('ничего не изменено');
           } else {
             console.log('dataSelectCar.id = ', dataSelectCar.id);
-            garageService.updateCar(dataSelectCar.id, newNameCar, dataSelectCar.color);
+            console.log('valueColorUpdate = ', valueColorUpdate);
+            garageService.updateCar(dataSelectCar.id, newNameCar, valueColorUpdate);
             inputNameUpdateChange.value = '';
             garageService.resetSelectCar();
           }

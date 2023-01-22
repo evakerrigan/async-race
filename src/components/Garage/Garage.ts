@@ -9,11 +9,13 @@ const Garage = (): TypeHTMLElement => {
   const container = Foundation.createElement('div', { className: 'garage' });
 
   container.addEventListener('click', (e: Event): void => {
+    const { page } = garageStore.getState();
+
     const { target } = e;
     if (target instanceof HTMLButtonElement && target.classList.contains('prev')) {
       e.preventDefault();
       console.log('нажали кнопку PREV');
-      const currentPage = 2;
+      const currentPage = page as number;
       const prevPage: number = currentPage - 1;
       if (prevPage === 0) {
         console.log('страницы 0 не существует');
@@ -24,14 +26,16 @@ const Garage = (): TypeHTMLElement => {
     }
   });
   container.addEventListener('click', (e: Event): void => {
+    const { page, count } = garageStore.getState();
     const { target } = e;
     if (target instanceof HTMLButtonElement && target.classList.contains('next')) {
       e.preventDefault();
       console.log('--------------------------------------------------------------------');
       console.log('нажали кнопку NEXT');
-      const currentPage = 1;
+      const currentPage = page as number;
       const nextPage: number = currentPage + 1;
-      const maxPage = Math.ceil(11 / 7);
+      const countCar = count as number;
+      const maxPage = Math.ceil(countCar / 7);
       if (nextPage <= maxPage) {
         console.log('страница меньше или равна максимальной, все ок');
         console.log('nextPage', nextPage);

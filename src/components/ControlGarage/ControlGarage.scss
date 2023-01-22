@@ -1,18 +1,25 @@
 .control {
   padding: 50px 0px;
 }
+
 .control-wrapper {
   display: flex;
   padding: 10px 0px;
 }
+
 .control-color {
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-color: #fff;
   margin: 0 10px;
-  border: none;
   outline: none;
+  border: none;
+  border-radius: 2px;
 }
+.control-color:hover {
+  cursor: pointer;
+}
+
 .control-input {
   outline: none;
   padding: 0px 5px 0px 15px;
