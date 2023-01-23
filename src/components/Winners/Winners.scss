@@ -1,0 +1,30 @@
+.table {
+  width: 500px;
+  border: 1px solid grey;
+}
+th, td {
+  border: 1px solid grey;
+}
+caption {
+  caption-side: bottom;
+  text-align: right;
+  padding: 10px 0;
+  font-size: 14px;
+}
+.win-number {
+  width: 50px;
+}
+.win-car {
+  width: 100px;
+}
+.win-name {
+  width: 100px;
+}
+.win-winner {
+  width: 50px;
+  cursor: pointer;
+}
+.win-time {
+  width: 100px;
+  cursor: pointer;
+}

@@ -9,7 +9,8 @@ class Router {
 
   navigate = (path = '') => {
     window.history.pushState(null, this.root + this.valuePath(path));
-  };
+  }
+
 }
 
 export default Router;
