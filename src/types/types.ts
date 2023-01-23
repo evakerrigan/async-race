@@ -3,7 +3,9 @@ export type TypeHTMLElement = HTMLElement | HTMLLIElement | HTMLHeadingElement |
 export interface TypeObjectClass {
   [key: string]: string | number | boolean;
 }
-
+export type TypePage = {
+  page: string;
+};
 export type TypeCar = {
   id: number;
   name: string;
